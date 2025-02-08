@@ -1,5 +1,5 @@
-import ChatbotFrontend from "@/components/custom/chatbot";
+import Chatbot from "@/components/custom/chatbot";
 
 export default function Home() {
-	return <ChatbotFrontend />;
+	return <Chatbot />;
 }
