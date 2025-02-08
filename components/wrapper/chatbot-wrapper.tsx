@@ -1,15 +1,17 @@
 "use client";
-import { useState } from "react";
 import Chatbot from "../custom/chatbot";
 import ChatPopupButton from "../custom/chat-popup-button";
 
-export default function ChatWrapper() {
-	const [isOpen, setIsOpen] = useState(false);
+type Props = {
+	action: (value: boolean) => void;
+	isOpen: boolean;
+};
 
+export default function ChatWrapper({ action, isOpen }: Props) {
 	return (
 		<>
-			{!isOpen && <ChatPopupButton onClick={() => setIsOpen(true)} />}
-			<Chatbot isOpen={isOpen} action={() => setIsOpen(false)} />
+			{!isOpen && <ChatPopupButton onClick={() => action(true)} />}
+			<Chatbot isOpen={isOpen} action={() => action(false)} />
 		</>
 	);
 }
