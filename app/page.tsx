@@ -1,5 +1,5 @@
-import Chatbot from "@/components/custom/chatbot";
+import ChatWrapper from "@/components/wrapper/chatbot-wrapper";
 
 export default function Home() {
-	return <Chatbot />;
+	return <ChatWrapper />;
 }

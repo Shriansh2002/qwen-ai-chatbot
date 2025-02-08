@@ -19,10 +19,14 @@ const useChatbot = (): UseChatbotReturnType => {
 		setIsLoading(true);
 
 		const controller = new AbortController();
-		const timeoutId = setTimeout(
-			() => controller.abort(),
-			API_CONFIG.timeout
-		);
+		let timeoutId: NodeJS.Timeout | undefined;
+
+		if (!API_CONFIG.enableTimeout) {
+			timeoutId = setTimeout(
+				() => controller.abort(),
+				API_CONFIG.timeout
+			);
+		}
 
 		try {
 			const response = await fetch(API_CONFIG.url, {
@@ -36,7 +40,9 @@ const useChatbot = (): UseChatbotReturnType => {
 				signal: controller.signal,
 			});
 
-			clearTimeout(timeoutId);
+			if (timeoutId) {
+				clearTimeout(timeoutId);
+			}
 
 			if (!response.ok) {
 				throw new Error(`Error: ${response.statusText}`);

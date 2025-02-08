@@ -12,3 +12,8 @@ export type UseChatbotReturnType = {
 	setUserInput: (value: string) => void;
 	handleSendMessage: () => void;
 };
+
+export type ChatbotProps = {
+	isOpen: boolean;
+	action: () => void;
+};
